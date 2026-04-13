@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safari Resort Booking Form</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+    <div id="password-overlay">
+        <div class="password-container">
+            <h2>SAFARI</h2>
+            <h2>Welcomes You on Board!</h2>
+            <input type="password" id="password-input" placeholder="Enter password">
+            <button onclick="checkPassword()">Access Form</button>
+        </div>
+    </div>
+
+    <div id="main-content" style="display: none;">
+        <!-- Hero Section -->
+        <section id="hero">
+            <img src="logo.png" alt="Safari Resort Logo" class="logo">
+            <h1>Welcome!</h1>
+            <p>Safari Resort is a refined sanctuary along Soq Kachura, offering breathtaking mountain views and timeless tranquility. Featuring elegant traditional rooms, a serene pool, fine dining, and lush gardens, it also boasts a Private Fish farm and Cherry garden creating a luxurious, peaceful escape in the untouched beauty of Skardu.</p>
+        </section>
+
+        <!-- Policies Section -->
+        <section id="policies">
+            <h2>Booking Policies</h2>
+            <div class="policy-content">
+                <p><strong>Thank you for choosing Safari Resort. We are pleased to confirm your reservation.</strong></p>
+                <h3>Terms:</h3>
+                <p>100% advance for booking confirmation</p>
+                <h3>Cancellation Policy:</h3>
+                <p>Guests are eligible for a 50% refund if the cancellation is made at least one month prior to the date of check-in.</p>
+                <p>In the event that the cancellation is made less than a month prior to the date of check-in date, the Resort reserves the right to not refund the amount deposited.</p>
+                <h3>Note:</h3>
+                <p>Check-in Time: 01:00 PM</p>
+                <p>Check-out Time: 11:00 AM</p>
+                <h3>Resort Policy:</h3>
+                <ul>
+                    <li>Smoking is prohibited in all guest rooms.</li>
+                    <li>Pets are not allowed on the resort premises.</li>
+                    <li>Outside food is not allowed on resort premises.</li>
+                    <li>Cooking not allowed in resort rooms.</li>
+                    <li>Complementry Breakfast for 2 persons.</li>
+                    <li>Free Pick from Airport to Resort.</li>
+                </ul>
+                <p><strong>Note: Food, Fishing, and other activities are not included in this Room Rent.</strong></p>
+            </div>
+        </section>
+
+        <!-- Booking Form -->
+        <section id="booking-form">
+            <h1>Booking Form!</h1>
+            <form id="bookingForm" method="POST" action="upload.php" enctype="multipart/form-data">
+                <label>Booking Date:</label>
+                <input type="date" name="bookingDate" required>
+
+                <input type="text" name="bookingConfirmedBy" placeholder="Booking Confirmed By *" required>
+                <input type="text" name="guestName" placeholder="Full Name *" required>
+                <input type="email" name="guestEmail" placeholder="Email *" required>
+                <input type="tel" name="guestPhone" placeholder="Phone">
+                <input type="text" name="cnic" placeholder="CNIC *" required>
+                <textarea name="address" placeholder="Address *" required></textarea>
+                <label>Check-in Date:</label>
+                <input type="date" name="checkIn" required>
+                <label>Check-out Date:</label>
+                <input type="date" name="checkOut" required>
+                <input type="number" name="totalNights" placeholder="Total Nights *" min="1" required>
+                <input type="number" name="totalRooms" placeholder="Total Rooms *" min="1" required>
+                <div id="roomSelections">
+                    <label>Room Types (Add multiple):</label>
+                    <div id="roomList"></div>
+                    <button type="button" onclick="addRoom()">Add Room</button>
+                </div>
+                <textarea name="specialRequests" placeholder="Special Requests (Optional)"></textarea>
+
+                
+                <!-- Payment Upload -->
+                <label for="paymentScreenshot">Upload Payment Proof (JazzCash/EasyPaisa/Bank) <span style="color:red;">*</span></label>
+                <div class="upload-area">
+                    <input type="file" id="paymentScreenshot" name="paymentScreenshot" accept="image/jpeg,image/jpg,image/png" required>
+                    <div class="upload-text">Drag image here or click to browse (JPG/PNG, max 2MB)</div>
+                    <img id="imagePreview" style="display: none; max-width: 300px; border-radius: 10px; margin-top: 10px;">
+                    <div id="uploadError" style="color: red;"></div>
+                    <button type="button" id="removeImageBtn" style="display:none; background:#ff4444; color:white; padding:10px; border:none; border-radius:5px; cursor:pointer; margin-top:10px;">❌ Remove Image</button>
+                </div>
+                <button type="submit">Submit Booking</button>
+            </form>
+        </section>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            Created by Market Minds
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
